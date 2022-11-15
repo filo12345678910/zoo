@@ -4,6 +4,7 @@ namespace zoo
 {
     class Animal
     {
+        friend class Breeder;
         int weight;
         std::string name;
     public:
@@ -38,18 +39,19 @@ namespace zoo
     {
     public:
         std::vector<Animal*> Animals;
-        void Add(T value);
-        void Remove(int i);
+        Zoo& operator+=(T value);
+        Zoo& operator-=(int i);
         void RemoveAll();
         void Show();
     };
     template <class T>
-    void Zoo<T>::Add(T value)
+    Zoo<T>& Zoo<T>::operator+=(T value)
     {
         this->Animals.push_back(value);
+        return *this;
     };
     template <class T>
-    void Zoo<T>::Remove(int i)
+    Zoo<T>& Zoo<T>::operator-=(int i)
     {
         this->Animals.erase(this->Animals.begin() + i);
     };
@@ -58,6 +60,7 @@ namespace zoo
     {
         for(int i = 0; i < this->Animals.size(); i++)
         {
+            std::cout << "Animal " << i << std::endl;
             this->Animals[i]->toString();
         }
     };
@@ -74,5 +77,6 @@ namespace zoo
     {
     public:
         Animal * Create(int a);
+        Animal * Breed(Animal* a, Animal* b);
     };
 }
