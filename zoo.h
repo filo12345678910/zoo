@@ -39,12 +39,19 @@ namespace zoo
     public:
         std::vector<Animal*> Animals;
         void Add(T value);
+        void Remove(int i);
+        void RemoveAll();
         void Show();
     };
     template <class T>
     void Zoo<T>::Add(T value)
     {
         this->Animals.push_back(value);
+    };
+    template <class T>
+    void Zoo<T>::Remove(int i)
+    {
+        this->Animals.erase(this->Animals.begin() + i);
     };
     template <class T>
     void Zoo<T>::Show()
@@ -54,4 +61,18 @@ namespace zoo
             this->Animals[i]->toString();
         }
     };
+    template <class T>
+    void Zoo<T>::RemoveAll()
+    {
+        while(this->Animals.size())
+        {
+            this->Animals.erase(this->Animals.begin());
+        }
+    };
+
+    /*class Breeder
+    {
+    public:
+        void Create();
+    };*/
 }

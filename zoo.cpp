@@ -32,6 +32,11 @@ void Frog::toString()
     Amphibiant::toString();
     cout << "is_poisonous?: " << poisonous << endl;
 }
+
+/*void Breeder::Create()
+{
+
+}*/
 int main()
 {
     Salamander* cat1 = new Salamander(13, "male", "black", 23, "red");
@@ -40,8 +45,13 @@ int main()
 
 
     Zoo<Animal*> p;
+    //Breeder b;
     p.Add(cat3);
     p.Add(cat2);
     p.Show();
+    p.RemoveAll();
 
+
+    cout << "------------" << endl;
+    p.Show();
 }
