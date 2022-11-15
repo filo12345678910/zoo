@@ -4,17 +4,17 @@ namespace zoo
 {
     class Animal
     {
-        int age;
-        std::string gender;
+        int weight;
+        std::string name;
     public:
-        Animal(int age, std::string gender);
+        Animal(int weight, std::string name);
         void virtual toString();
     };
     class Amphibiant: public Animal
     {
         std::string color_of_skin;
     public:
-        Amphibiant(int age, std::string gender,std::string color_of_skin);
+        Amphibiant(int weight, std::string name,std::string color_of_skin);
         void virtual toString();
     };
     class Salamander: public Amphibiant
@@ -22,14 +22,14 @@ namespace zoo
         int tail_length;
         std::string color_of_dots;
     public:
-        Salamander(int age, std::string gender,std::string color_of_skin,int tail_length,std::string color_of_dots);
+        Salamander(int weight, std::string name,std::string color_of_skin,int tail_length,std::string color_of_dots);
         void toString();
     };
     class Frog: public Amphibiant
     {
         bool poisonous;
     public:
-        Frog(int age, std::string gender,std::string color_of_skin,bool poisonous);
+        Frog(int weight, std::string name,std::string color_of_skin,bool poisonous);
         void toString();
     };
 
@@ -70,9 +70,9 @@ namespace zoo
         }
     };
 
-    /*class Breeder
+    class Breeder
     {
     public:
-        void Create();
-    };*/
+        Animal * Create(int a);
+    };
 }

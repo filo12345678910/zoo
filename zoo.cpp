@@ -1,18 +1,23 @@
 #include<iostream>
 #include <typeinfo>
 #include <vector>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 #include "zoo.h"
 using namespace zoo;
 using namespace std;
-Animal::Animal(int age, string gender){this->age = age;this->gender = gender;}
-Amphibiant::Amphibiant(int age, string gender, string color_of_skin): Animal(age, gender){this->color_of_skin = color_of_skin;}
-Salamander::Salamander(int age, string gender, string color_of_skin, int tail_length, string color_of_dots): Amphibiant(age, gender, color_of_skin){this->tail_length = tail_length; this->color_of_dots = color_of_dots;}
-Frog::Frog(int age, string gender, string color_of_skin, bool poisonous): Amphibiant(age, gender, color_of_skin){this->poisonous = poisonous;}
+Animal::Animal(int weight, string name){this->weight = weight;this->name = name;}
+Amphibiant::Amphibiant(int weight, string name, string color_of_skin): Animal(weight, name){this->color_of_skin = color_of_skin;}
+Salamander::Salamander(int weight, string name, string color_of_skin, int tail_length, string color_of_dots): Amphibiant(weight, name, color_of_skin){this->tail_length = tail_length; this->color_of_dots = color_of_dots;}
+Frog::Frog(int weight, string name, string color_of_skin, bool poisonous): Amphibiant(weight, name, color_of_skin){this->poisonous = poisonous;}
 
 void Animal::toString()
 {
-    cout << "age: " << age << endl;
-    cout << "gender: " << gender << endl;
+    cout << "weight: " << weight << endl;
+    cout << "name: " << name << endl;
 }
 void Amphibiant::toString()
 {
@@ -33,21 +38,25 @@ void Frog::toString()
     cout << "is_poisonous?: " << poisonous << endl;
 }
 
-/*void Breeder::Create()
+Animal * Breeder::Create(int a)
 {
-
-}*/
+    string color[30] = {"White", "Yellow", "Blue", "Red", "Green", "Black", "Brown", "Silver", "Purple", "Orange", "Grey", "Cyan", "Lime"};
+    string name[30] = {"Adams", "Baker", "Clark", "Davis", "Evans", "Frank", "Ghosh", "Hills", "Irwin", "Jones", "Klein", "Lopez", "Mason", "Nalty", "Ochoa", "Patel", "Quinn", "Reily", "Smith", "Trott", "Usman", "Valdo", "White", "Xiang", "Yakub", "Zafar"};
+    switch (a)
+    {
+        case 1: return new Salamander(rand()%100 + 1, name[rand()%26], color[rand()%13], rand()%20, color[rand()%13]); break;
+        case 2: return new Frog(rand()%100 + 1, name[rand()%26], color[rand()%13], rand()%2); break;
+    }
+}
 int main()
 {
-    Salamander* cat1 = new Salamander(13, "male", "black", 23, "red");
-    Salamander* cat2 = new Salamander(34, "female", "black", 3, "blue");
-    Frog* cat3 = new Frog(23, "male", "red", 1);
-
-
+    srand (time(NULL));
     Zoo<Animal*> p;
-    //Breeder b;
-    p.Add(cat3);
-    p.Add(cat2);
+    Breeder b;
+
+
+    p.Add(b.Create(1));
+    p.Add(b.Create(2));
     p.Show();
     p.RemoveAll();
 
